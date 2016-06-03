@@ -1,0 +1,27 @@
+<h4>Animales adoptados</h4>
+<table class="table">
+    <thead>
+    <th></th>
+    <th>Nombre</th>
+    <th>Fecha de llegada</th>
+    <th>Acciones</th>
+
+    </thead>
+    <tr ng-repeat="u in adopted">
+        <td><img src="http://homeformeapi.localhost/{{u.profileimage}}" class="img-circle" width="70" height="70" id="pi"></td>
+        <td>{{u.name}}</td>
+        <td>{{u.arrivalDate  | date: "dd/MM/yyyy 'a las' h:mma "}}</td>
+
+        <td>
+            <a ui-sref="viewAnimal({id:u.id})">
+                <button class="btn btn-success">Ver</button>
+            </a>
+            <a ui-sref="animalViewAdoption({id:u.id})">
+                <button class="btn btn-info">Adoptante</button>
+            </a>
+            <button class="btn btn-primary">Historial</button>
+
+        </td>
+
+    </tr>
+</table>

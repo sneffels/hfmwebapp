@@ -1,0 +1,15 @@
+<form class="form-horizontal" role="form" ng-submit="addBreed()">
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input class="form-control" type="text" id="name" ng-model="breed.description">
+    </div>
+    <div class="form-group" ng-controller="SpeciesListController">
+        <label>Especie</label>
+        <select class="form-control" required
+                ng-model="sp" ng-options="s.name for s in species" ng-change="speciesupdateforbreed()">
+        </select>
+    </div>
+    <div class="col-md-12" align="right">
+        <input type="submit" class="btn btn-success" value="Registrar">
+    </div>
+</form>

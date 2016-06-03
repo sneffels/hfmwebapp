@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="well">
+        <strong>
+            Formulario de adopcion para:
+        </strong>
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-4">
+                <img src="http://homeformeapi.localhost/{{animal.profileimage}}" class="img-circle" width="150" height="150">
+
+            </div>
+            <div class="col-md-6">
+                <h3><small>nombre: </small>{{animal.name}}</h3>
+                <h4><small>genero: </small>{{animal.gender}}</h4>
+                <h4><small>especie: </small>{{animal.species.name}}</h4>
+                <h4><small>raza: </small>{{animal.breed.description}}</h4>
+
+            </div>
+        </div>
+
+    </div>
+<div class="container-fluid" style="padding-left: 10%; padding-right: 10%">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            DATOS DEL SOLICITANTE
+        </div>
+        <div class="panel-body">
+            <form ng-submit="addAdoption()">
+                <div class="form-group">
+                    <label>Nombres</label>
+                    <input class="form-control" ng-model="adoption.names">
+                </div>
+                <div class="form-group">
+                    <label>Apellidos</label>
+                    <input class="form-control" ng-model="adoption.lastName">
+                </div>
+                <div class="form-group">
+                    <label>Carnet de identidad</label>
+                    <input class="form-control" ng-model="adoption.idPerson">
+                </div>
+                <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                    <input class="form-control" ng-model="adoption.birthDate">
+                </div>
+                <div class="form-group">
+                    <label>Direccion</label>
+                    <input class="form-control" ng-model="adoption.address">
+                </div>
+                <div class="form-group">
+                    <label>Tipo de vivienda</label>
+                    <select class="form-control" ng-model="adoption.housingType">
+                        <option value="Casa Propia">Casa Propia</option>
+                        <option value="Alquiler">Alquiler</option>
+                        <option value="Departamento">Departamento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Telefono - Celular</label>
+                    <input class="form-control" ng-model="adoption.cellPhone">
+                </div>
+                <div class="form-group">
+                    <label>Correo</label>
+                    <input class="form-control" ng-model="adoption.email">
+                </div>
+                <div class="form-group">
+                    <p><strong>Papeles</strong></p>
+                    <div ng-repeat="opt in docs">
+                        <input type="checkbox" value="{{opt.name}}" ng-model="opt.selected">{{opt.name}}
+
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-success" value="Registrar adopcion" style="alignment: center">
+            </form>
+        </div>
+    </div>
+
+</div>

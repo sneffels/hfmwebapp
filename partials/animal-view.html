@@ -1,0 +1,23 @@
+
+
+        <h2>Informacion general</h2>
+        <img src="http://homeformeapi.localhost/{{animal.profileimage}}" width="200" height="200" id="pi">
+
+        <h3><small>nombre: </small>{{animal.name}}</h3>
+        <h4><small>genero: </small>{{animal.gender}}</h4>
+        <h4><small>especie: </small>{{animal.species.name}}</h4>
+        <h4><small>raza: </small>{{animal.breed.description}}</h4>
+
+        <h2>Estado de llegada al refugio</h2>
+        <h4><small>fecha de llegada: </small>{{animal.arrivalDate | date: "dd/MM/yyyy 'a las' h:mma "}}</h4>
+        <h4><small>estado en el que llego: </small>{{animal.arrivalState}}</h4>
+        <h4><small>descripcion general: </small>{{animal.generalDescription}}</h4>
+        <h4><small>zona procedencia: </small>{{animal.foundAddress}}</h4>
+        <h4><small>calle procedencia: </small>{{animal.foundAddressStreet}}</h4>
+        <h2>Informacion de la persona que lo trajo</h2>
+        <h4><small>nombre: </small>{{animal.responsiblePerson}}</h4>
+        <h4><small>la persona es: </small>{{animal.responsiblePersonType}}</h4>
+        <h4><small>contactos: </small>{{animal.responsiblePersonContact}}</h4>
+
+
+

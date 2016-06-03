@@ -1,0 +1,396 @@
+
+<style>
+    .btn-round {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+    .rowName{
+        font-weight: bold;
+        font-size: smaller;
+    }
+</style>
+<div class="row">
+    <div class="well">
+        <strong>
+            Valoraciones para:
+        </strong>
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-4">
+                <img src="http://homeformeapi.localhost/{{animal.profileimage}}" class="img-circle" width="150" height="150">
+
+            </div>
+            <div class="col-md-6">
+                <h3><small>nombre: </small>{{animal.name}}</h3>
+                <h4><small>genero: </small>{{animal.gender}}</h4>
+                <h4><small>especie: </small>{{animal.species.name}}</h4>
+                <h4><small>raza: </small>{{animal.breed.description}}</h4>
+                <button class="btn btn-success" ng-controller="AnimalToAdoptionController" ng-click="toAdoption()">
+                    Listo para adopcion
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+<div class="row">
+
+    <div class="col-md-6"   ng-controller="MedicalValorationsListController" ng-init="ite=0">
+        <div style="margin-bottom: 3%">
+            <button ng-click="ite=ite-1" ng-disabled="ite==0" class="btn btn-primary">Anterior</button>
+            <button ng-click="ite=ite+1" ng-disabled="ite==max-1" class="btn btn-primary">Siguiente</button>
+            <button class="btn btn-success btn-round" data-toggle="modal" data-target="#mvModal">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div id="mvModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                            <div class="modal-header" style="background-color: #2e6da4; color: white">
+                                Nueva Valoracion Medica
+                            </div>
+                            <div class="modal-body" ng-controller="MedicalValorationCreateController" style="margin-left: 5%;margin-right: 5%">
+                                <form class="form-horizontal" role="form" ng-submit="addMV()">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group well" >
+                                                <label>Dolor</label>
+                                                <label> <input type="radio" ng-model="mv.pain" value="Si"> Si</label>
+                                                <label> <input type="radio" ng-model="mv.pain" value="No"> No</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="weight">Peso</label>
+                                                <input id="weight" type="text" class="form-control" ng-model="mv.weight">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Condicion fisica</label>
+                                                <select class="form-control" ng-model="mv.bodycondition">
+                                                    <option value="Demacrado">Demacrado</option>
+                                                    <option value="Muy delgado">Muy delgado</option>
+                                                    <option value="Delgado">Delgado</option>
+                                                    <option value="Esbelto">Esbelto</option>
+                                                    <option value="Ideal">Ideal</option>
+                                                    <option value="Poco sobrepeso">Poco sobrepeso</option>
+                                                    <option value="Sobrepeso">Sobrepeso</option>
+                                                    <option value="Obeso">Obeso</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Ojos</label>
+                                        <label> <input type="radio" ng-model="eyes" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="eyes" value="Anormal" id="anormaleyes">Anormal</label>
+                                        <div ng-show="eyes=='Anormal'">
+                                            <div ng-repeat="opt in opteyes">
+                                                <input type="checkbox" ng-model="opt.selected" value="{{opt.name}}">
+                                                {{opt.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Boca y hocico</label>
+                                        <label> <input type="radio" ng-model="mouth" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="mouth" value="Anormal" id="anormalmouth">Anormal</label>
+                                        <div ng-show="mouth=='Anormal'">
+                                            <div ng-repeat="opt in optmouth">
+                                                <input type="checkbox" ng-model="opt.selected" value="{{opt.name}}">
+                                                {{opt.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Abdomen</label>
+                                        <label> <input type="radio" ng-model="mv.abdomen" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="mv.abdomen" value="Anormal">Anormal</label>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Piel</label>
+                                        <label> <input type="radio" ng-model="skin" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="skin" value="Anormal" id="anormalskin">Anormal</label>
+                                        <div ng-show="skin=='Anormal'">
+                                            <div ng-repeat="opt in optskin">
+                                                <input type="checkbox" ng-model="opt.selected" value="{{opt.name}}">
+                                                {{opt.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Orejas</label>
+                                        <label> <input type="radio" ng-model="ears" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="ears" value="Anormal">Anormal</label>
+                                        <div ng-show="ears=='Anormal'">
+                                            <div ng-repeat="opt in optears">
+                                                <input type="checkbox" ng-model="opt.selected" value="{{opt.name}}">
+                                                {{opt.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Nariz y garganta</label>
+                                        <label> <input type="radio" ng-model="nosethroat" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="nosethroat" value="Anormal">Anormal</label>
+                                        <div ng-show="nosethroat=='Anormal'">
+                                            <div ng-repeat="opt in optnosethroat">
+                                                <input type="checkbox" ng-model="opt.selected" value="{{opt.name}}">
+                                                {{opt.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Sistema nervioso</label>
+                                        <label> <input type="radio" ng-model="mv.neuro" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="mv.neuro" value="Anormal">Anormal</label>
+                                    </div>
+                                    <div class="form-group well">
+                                        <label>Patas</label>
+                                        <label> <input type="radio" ng-model="feet" value="Normal">Normal</label>
+                                        <label> <input type="radio" ng-model="feet" value="Anormal">Anormal</label>
+                                        <div ng-show="feet=='Anormal'">
+                                            <div ng-repeat="opt in optfeet">
+                                                <input type="checkbox" ng-model="opt.selected" value="{{opt.name}}">
+                                                {{opt.name}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Cuidados</label>
+                    <textarea class="form-control" rows="4" ng-model="mv.medicalCares">
+                        </textarea>
+                                    </div>
+
+                                    <div class="form-group" ng-controller="VetListController">
+                                        <label>Veterinario</label>
+                                        <select class="form-control"
+                                                ng-model="vd" ng-options="v.completeName for v in vets" ng-change="vetsUpdate()">
+                                        </select>
+                                    </div>
+                                    <input type="submit" class="btn btn-success" value="Registrar" style="alignment: center">
+                                </form>
+                            </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                Valoracion Medica
+            </div>
+            <div class="panel-body">
+
+                <table class="table table-striped">
+                    <tr>
+                        <td class="rowName">FECHA</td>
+                        <td>{{medVal[ite].date}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">VETERINARIO</td>
+                        <td>{{medVal[ite].vet.completeName}} <small>({{medVal[ite].vet.veterinary}})</small></td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">DOLOR</td>
+                        <td>{{medVal[ite].pain}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">PESO</td>
+                        <td>{{medVal[ite].weight}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">COND. CORPORAL</td>
+                        <td>{{medVal[ite].bodycondition}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">CUIDADOS</td>
+                        <td>{{medVal[ite].medicalCares}}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;" colspan="2" align="center">DETALLES</td>
+
+                    </tr>
+                    <tr>
+                        <td class="rowName">OJOS</td>
+                        <td>{{medVal[ite].eyes}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">BOCA Y HOCICO</td>
+                        <td>{{medVal[ite].mouth}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">PIEL</td>
+                        <td>{{medVal[ite].skin}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">OREJAS</td>
+                        <td>{{medVal[ite].ears}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">NARIZ Y GARGANTA</td>
+                        <td>{{medVal[ite].nosenthroat}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">PATAS</td>
+                        <td>{{medVal[ite].feet}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">ABDOMEN</td>
+                        <td>{{medVal[ite].abdomen}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">NEURO</td>
+                        <td>{{medVal[ite].neuro}}</td>
+                    </tr>
+                </table>
+
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-md-6" ng-controller="BehaviorObservationListController" ng-init="ite=0">
+        <div style="margin-bottom: 3%">
+            <button ng-click="ite=ite-1" ng-disabled="ite==0" class="btn btn-primary">Anterior</button>
+            <button ng-click="ite=ite+1" ng-disabled="ite==max-1" class="btn btn-primary">Siguiente</button>
+            <button class="btn btn-warning btn-round" data-toggle="modal" data-target="#boModal">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div id="boModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #2e6da4; color: white">
+                        Nueva Valoracion de Comportamiento
+                    </div>
+                    <div class="modal-body" ng-controller="BehaviorObservationCreateController" style="margin-left: 5%;margin-right: 5%">
+                        <form class="form-horizontal" role="form" ng-submit="addBO()">
+
+
+                            <div class="form-group" ng-controller="VolunteerListController">
+                                <label>Voluntario</label>
+                                <select class="form-control"
+                                        ng-model="vol" ng-options="v.completeName for v in volunteers" ng-change="volunteerUpdate()">
+                                </select>
+                            </div>
+                            <div class="well" >
+                                <h5 class="text-center"><strong>CON OTROS ANIMALES</strong></h5>
+                                <div class="form-group">
+                                    <label>Temperamento</label>
+                                    <select class="form-control" ng-model="bo.temperamentWithAnimals">
+                                        <option value="Energico-amistoso">Energico-amistoso</option>
+                                        <option value="Timido">Timido</option>
+                                        <option value="Reacio-malhumorado">Reacio-malhumorado</option>
+                                        <option value="No social-agresivo">No social-agresivo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Actitud</label>
+                                    <select class="form-control" ng-model="bo.attitudeWithAnimals">
+                                        <option value="En alerta-vivaz">En alerta-vivaz</option>
+                                        <option value="En alerta-callado">En alerta-callado</option>
+                                        <option value="Callado-depresivo">Callado-depresivo</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="well" >
+                                <h5 class="text-center"><strong>CON PERSONAS</strong></h5>
+                                <div class="form-group">
+                                    <label>Temperamento</label>
+                                    <select class="form-control" ng-model="bo.temperamentWithPeople">
+                                        <option value="Energico-amistoso">Energico-amistoso</option>
+                                        <option value="Timido">Timido</option>
+                                        <option value="Reacio-malhumorado">Reacio-malhumorado</option>
+                                        <option value="No social-agresivo">No social-agresivo</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Actitud</label>
+                                    <select class="form-control" ng-model="bo.attitudeWithPeople">
+                                        <option value="En alerta-vivaz">En alerta-vivaz</option>
+                                        <option value="En alerta-callado">En alerta-callado</option>
+                                        <option value="Callado-depresivo">Callado-depresivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Recomendaciones</label>
+                        <textarea class="form-control" rows="4" ng-model="bo.recommendations">
+                        </textarea>
+                            </div>
+
+                            <input type="submit" class="btn btn-success" value="Registrar" style="alignment: center">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Valoracion de Comportamiento
+            </div>
+            <div class="panel-body">
+
+                <table class="table table-striped">
+                    <tr>
+                        <td class="rowName">FECHA</td>
+                        <td>{{bhObs[ite].datetime}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">VOLUNTARIO</td>
+                        <td>{{bhObs[ite].volunteer.completeName}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">RECOMENDACIONES</td>
+                        <td>{{bhObs[ite].recommendations}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName" colspan="2" align="center">CON ANIMALES</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">TEMPERAMENTO</td>
+                        <td>{{bhObs[ite].temperamentWithAnimals}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">ACTITUD</td>
+                        <td>{{bhObs[ite].attitudeWithAnimals}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName" colspan="2" align="center">CON PERSONAS</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">TEMPERAMENTO</td>
+                        <td>{{bhObs[ite].temperamentWithPeople}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rowName">ACTITUD</td>
+                        <td>{{bhObs[ite].attitudeWithPeople}}</td>
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#mvModal').on('hidden.bs.modal', function () {
+        location.reload();
+    });
+    $('#boModal').on('hidden.bs.modal', function () {
+        location.reload();
+    });
+</script>

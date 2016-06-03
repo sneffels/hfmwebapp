@@ -1,0 +1,22 @@
+<form class="form-horizontal" role="form" ng-submit="addVolunteer()">
+    <div class="form-group">
+        <label for="carnet">Carnet</label>
+        <input class="form-control" type="text" id="carnet" ng-model="volunteer.idV">
+    </div>
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input class="form-control" type="text" id="name" ng-model="volunteer.completeName">
+    </div>
+
+    <div class="form-group">
+        <label for="address">Direccion</label>
+        <input class="form-control" type="text" id="address" ng-model="volunteer.address">
+    </div>
+    <div class="form-group">
+        <label for="phone">Numero de contacto</label>
+        <input class="form-control" type="text" id="phone" ng-model="volunteer.phone">
+    </div>
+    <div class="col-md-12" align="right">
+        <input type="submit" class="btn btn-success" value="Registrar">
+    </div>
+</form>

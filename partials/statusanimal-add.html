@@ -1,0 +1,19 @@
+<h3 id="date1">Estado del animal</h3>
+<form ng-submit="addStatusAnimal()">
+
+
+    <div class="form-group">
+        <label for="status">Estado</label>
+        <select id="status" class="form-control" ng-model="statusanimal.status" >
+            <option value="Valorando">Valorando</option>
+            <option value="Adopcion">Adopcion</option>
+            <option value="Adoptado">Adoptado</option>
+        </select>
+
+    </div>
+    <button class="btn btn-success" type="submit">
+
+        Cambiar de estado
+
+    </button>
+</form>

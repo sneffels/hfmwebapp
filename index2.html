@@ -1,0 +1,130 @@
+
+<!doctype html>
+<html lang="en" data-ng-app="animalModule" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Home for Me</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jasny-bootstrap.css"/>
+
+    <style>
+        .nav-pills > li.active > a,
+        .nav-pills > li.active > a:hover,
+        .nav-pills > li.active > a:focus {
+            background-color: #3c763d;
+            color: white;
+            border-radius: 0px;
+        }
+
+        .nav-pills > li > a {
+            color: white;
+            border-radius: 0px;
+        }
+
+        .nav-pills > li > a:hover,
+        .nav-pills > li > a:focus {
+            color: white;
+            background-color: #3c763d;
+            border-radius: 0px;
+        }
+        .nav-pills> li>a:checked
+        {
+            color: white;
+            background-color: #3c763d;
+            border-radius: 0px;
+        }
+        .btn-round {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        @font-face {
+            font-family: bannerFont;
+            src: url(resources/Sprinklescolors.ttf) format('truetype');
+        }
+    </style>
+</head>
+<body style="background: lightgray">
+
+<div class="container-fluid">
+
+        <div id="menu" class="col-md-2">
+
+            <div style=" position:fixed;background: #333333">
+                <ul class="nav nav-pills nav-stacked left">
+                    <li>
+                        <a href="#"> <button class="btn btn-info btn-round">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </button>
+                            Inicio
+                        </a></li>
+                    <li><a ui-sref="newAnimal">
+                        <button class="btn btn-info btn-round">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        Nuevo registro
+                    </a></li>
+                </ul>
+                <p style="color: #66afe9; font-style: italic;">Registros</p>
+                <ul class="nav nav-pills nav-stacked left">
+                    <li><a ui-sref="uncataloguedAnimals">Nuevos ingresos</a></li>
+                    <li><a ui-sref="lostAnimals">Perdidos</a></li>
+                    <li><a ui-sref="valorationAnimals" style="display: block">En valoracion</a></li>
+                    <li><a ui-sref="adoptionAnimals">En adopcion</a></li>
+                    <li><a ui-sref="adoptedAnimals">Adoptados</a></li>
+                </ul>
+                <p style="color: #66afe9; font-style: italic;">Administracion</p>
+                <ul class="nav nav-pills nav-stacked left">
+                    <li><a>Nueva raza</a></li>
+                    <li><a ui-sref="newSpecies">Nueva especie</a></li>
+                    <li><a ui-sref="newVet">Nuevo veterinario</a></li>
+                    <li><a ui-sref="newVolunteer">Nuevo voluntario</a></li>
+
+
+                </ul>
+
+            </div>
+
+
+        </div>
+        <div class="col-md-10" style="background: lightgray">
+            <div class="row" style="height: 150px;background: #333333" >
+
+
+                    <div class="col-md-2">
+                        <img src="resources/dog.png" width="160" height="140">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 style="font-family: bannerFont;font-size: 120px;color: white" class="text-center">Home for me</h3>
+                    </div>
+                    <div class="col-md-2">
+                        <img src="resources/cat.png" width="160" height="140">
+                    </div>
+            </div>
+            <div class="row">
+                <div id="content" style="background: white;">
+                    <div ui-view>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+</div>
+<script src="lib/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/jasny-bootstrap.js"></script>
+
+
+<script type="text/javascript" src="lib/angular.js"></script>
+<script type="text/javascript" src="js/animal/animalCRUD.js"></script>
+<script type="text/javascript" src="js/animal/animalModule.js"></script>
+<script type="text/javascript" src="js/services.js"></script>
+<script type="text/javascript" src="js/directives.js"></script>
+
+<script type="text/javascript" src="lib/angular-ui-router.js"></script>
+<script type="text/javascript" src="lib/angular-resource.js"></script>
+
+</body>
+</html>
