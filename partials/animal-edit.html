@@ -1,140 +1,188 @@
-<style>
-
-    .row
-    {
-        margin-right: 0%;
-        margin-left: 0%;
-    }
-    .form-group
-    {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
-    textarea
-    {
-        resize: none;
-        width: 100%
-    }
-</style>
-
-<form class="form-horizontal" role="form" ng-submit="editAnimal()" >
-
-    <div class="row" >
-        <div class="col-md-4" style="margin-top: 5%">
-            <div class="row">
-                <img  src="resources/drawables/catdog.jpg" style="width: 100%;height: 100%">
-            </div>
-            <div class="row">
-                <br>
-                <br>
-                <h3>Editar informacion</h3>
-                <h5>Editar la informacion de manera responsable.</h5>
-            </div>
-            <div class="row">
-                <button class="btn btn-success" type="submit">
-                    <h4>
-                        Guardar cambios
-                    </h4>
-                </button>
-            </div>
-
-        </div>
+<form class="form-horizontal" role="form" ng-submit="addAnimal()" id="animalFormData" enctype='multipart/form-data'>
+    <div class="row">
         <div class="col-md-4">
-            <div class="row">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Informacion del animalito</div>
-                    <div class="panel-body" >
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="name">Nombre</label>
-                                <input class="form-control" type="text" id="name" ng-model="animal.name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4" style="padding-left:4%">
-                                <div class="form-group">
-                                    <label for="gender">Genero</label>
-                                    <select id="gender" class="form-control" ng-model="animal.gender">
-                                        <option value="F">F</option>
-                                        <option value="M">M</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-8"  style="padding-right: 2%">
-                                <div class="form-group">
-                                    <label for="species_id">Especie</label>
-                                    <select id="species_id" class="form-control" ng-controller="SpeciesListController" ng-model="animal.species_id">
-                                        <option ng-repeat="specie in species" value="{{specie.id}}">
-                                            {{specie.name}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+            <img src="" height="150" width="150" alt="Imagen de perfil" id="imgProfile">
+            <input class="form-control" type="file" id="file-select" onchange="previewFile()">
 
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">Informacion de la persona encargada</div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label for="responsiblePerson">Persona responsable</label>
-                            <input class="form-control" type="text" id="responsiblePerson" ng-model="animal.responsiblePerson">
-                        </div>
-                        <div class="form-group">
-                            <label for="responsiblePersonContact">Numero de contacto</label>
-                            <input class="form-control" type="text" id="responsiblePersonContact" ng-model="animal.responsiblePersonContact">
-                        </div>
-                        <div class="form-group">
-                            <label for="responsiblePersonType">La persona es</label>
-                            <select id="responsiblePersonType" class="form-control" ng-model="animal.responsiblePersonType">
-                                <option value="1">Ciudadano</option>
-                                <option value="2">Dueno</option>
-                                <option value="3">Voluntario</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
+            <textarea  style="display: none" id="base64data"></textarea>
         </div>
-        <div class="col-md-4">
-            <div class="panel panel-primary" style="height: 500px;">
-                <div class="panel-heading">Informacion del estado inicial</div>
-                <div class="panel-body">
+        <div class="col-md-8" style="padding-right: 30px">
+            <div class="row">
+                <div class="col-md-8">
                     <div class="form-group">
-                        <label for="arrivalState">Llego en condicion de</label>
-                        <select id="arrivalState" class="form-control" ng-model="animal.arrivalState">
-                            <option value="1">Perdido</option>
-                            <option value="2">Abandonado</option>
-                            <option value="3">Rescatado</option>
-                            <option value="4">Entregado voluntariamente</option>
+                        <label for="name">Nombre</label>
+                        <input class="form-control" type="text" ng-model="animal.name" id="name" required>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label for="gender">Genero</label>
+                        <select class="form-control" ng-model="animal.gender" id="gender" required>
+                            <option value="Macho">Macho</option>
+                            <option value="Hembra">Hembra</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="arrivalDate">Fecha de llegada</label>
-                        <input id="arrivalDate" type="date" class="form-control" ng-model="animal.arrivalDate">
-                    </div>
-                    <div class="form-group" >
-                        <label for="generalDescription">Descripcion general</label>
-                        <textarea id="generalDescription" rows="7" placeholder="Descripcion" ng-model="animal.generalDescription"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="foundAddress">Direccion donde fue hallado</label>
-                        <textarea  id="foundAddress" rows="2" placeholder="Direccion donde fue hallado" ng-model="animal.foundAddress" ></textarea>
-                    </div>
+
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-6" style="padding-right: 25px" ng-controller="SpeciesListController">
+                    <div class="form-group">
+                        <label>Especie</label>
+                        <select class="form-control" required
+
+                                ng-model="sp" ng-options="s.name for s in species" ng-change="speciesupdate()" >
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Raza</label>
+                        <select class="form-control" required
+                                ng-model="bd" ng-options="b.description for b in sp.breed" ng-change="breedupdate()">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-md-6" style="padding-left: 25px">
+
+                    <div class="row">
+                        <div class="col-md-7" style="padding-right: 25px">
+                            <div class="form-group">
+                                <label for="age">Edad aprox.</label>
+                                <input class="form-control" type="number" ng-model="age" id="age" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5" style="padding-left: 25px">
+                            <label>En: </label>
+                            <div class="form-group">
+                                <select class="form-control" ng-model="ageType" >
+                                    <option>meses</option>
+                                    <option>años</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="height">Tamaño</label>
+                        <select class="form-control" type="text" ng-model="animal.height" id="height" required>
+                            <option value="Pequeño">Pequeño</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Grande">Grande</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" >
+            <div class="panel panel-success">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Registro persona responsable</div>
+                <div class="panel-body" style="padding-left: 30px;padding-right: 30px">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input class="form-control" type="text" ng-model="animal.responsiblePerson" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contacto</label>
+                        <input class="form-control" type="text" ng-model="animal.responsiblePersonContact" required>
+                    </div>
+                    <div class="form-group">
+                        <label>La persona es</label>
+                        <select class="form-control" ng-model="animal.responsiblePersonType" required>
+                            <option value="Voluntario">Voluntario</option>
+                            <option value="Ciudadano">Ciudadano</option>
+                            <option value="Dueño">Dueño</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Registro estado inicial</div>
+                <div class="panel-body" style="padding-left: 30px;padding-right: 30px">
+                    <div class="form-group">
+                        <label>Llego en condicion de</label>
+                        <select class="form-control" ng-model="animal.arrivalState" required>
+                            <option>Perdido</option>
+                            <option>Abandonado</option>
+                            <option>Rescatado</option>
+                            <option>Entregado voluntariamente</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="padding-right: 25px">
+
+                            <div class="form-group">
+                                <label>Zona</label>
+                                <input class="form-control" type="text" ng-model="animal.foundAddress" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="padding-left: 25px">
+
+                            <div class="form-group">
+                                <label>Calle</label>
+                                <input class="form-control" type="text" ng-model="animal.foundAddressStreet" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <textarea class="form-control" rows="4" ng-model="animal.generalDescription" required>
+
+                        </textarea>
+                    </div>
+
+
+                </div>
+
+            </div>
         </div>
 
     </div>
 
+    <div class="row" align="center">
+        <input type="submit" class="btn btn-success" value="Registrar" style="alignment: center">
+    </div>
 
 </form>
+<script>
+    function previewFile() {
+        var preview = document.getElementById('imgProfile');
+        var showtext=document.getElementById('base64data');
+        var file    = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+
+        reader.addEventListener("load", function () {
+            preview.src = reader.result;
+            showtext.innerHTML=reader.result;
+
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
+
+
+    }
+</script>

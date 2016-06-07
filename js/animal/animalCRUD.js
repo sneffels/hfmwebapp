@@ -479,6 +479,7 @@ angular.module('animalCRUD.controllers',[])
 
     $scope.docs=[{name:'Factura luz'},{name:'Factura agua'},{name:'Fotocopia Carnet'},{name:'Permiso (Depto o alquiler)'}];
     $scope.adoption=new Adoption();
+
     $scope.statusanimal=new StatusAnimal();
 
     $scope.animal=Animal.get({id:$stateParams.id});
@@ -486,6 +487,9 @@ angular.module('animalCRUD.controllers',[])
     $scope.addAdoption=function()
     {
         $scope.adoption.animal_id=$stateParams.id;
+        $dateFixed=Date.parse($scope.adoption.birthDate,'MM-DD-YYYY');
+        console.log($dateFixed);
+
         $scope.adoption.docs="";
         angular.forEach($scope.docs,function(opt)
         {
