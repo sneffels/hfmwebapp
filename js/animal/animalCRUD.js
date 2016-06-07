@@ -41,7 +41,7 @@ angular.module('animalCRUD.controllers',[])
                 formData.append('profile_image',file[0]);
 
                 var xhr=new XMLHttpRequest();
-                xhr.open('POST','http://homeformeapi.localhost/animals',true);
+                xhr.open('POST','http://pomserver.westus.cloudapp.azure.com/animals',true);
                 xhr.onload=function()
                 {
                     if(xhr.status===200)
@@ -201,7 +201,7 @@ angular.module('animalCRUD.controllers',[])
                 $http(
                     {
                         method:'POST',
-                        url:'http://homeformeapi.localhost/animalstatus',
+                        url:'http://pomserver.westus.cloudapp.azure.com/animalstatus',
                         data:$scope.statusanimal
                     }
                 );
@@ -282,7 +282,7 @@ angular.module('animalCRUD.controllers',[])
                 $http(
                 {
                     method:'POST',
-                    url:'http://homeformeapi.localhost/animalstatus',
+                    url:'http://pomserver.westus.cloudapp.azure.com/animalstatus',
                     data:$scope.statusanimal
                 }
             );
@@ -468,7 +468,7 @@ angular.module('animalCRUD.controllers',[])
         $http(
             {
                 method:'POST',
-                url:'http://homeformeapi.localhost/animalstatus',
+                url:'http://pomserver.westus.cloudapp.azure.com/animalstatus',
                 data:$scope.statusanimal
             });
         $state.go('adoptionAnimals');

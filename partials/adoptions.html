@@ -8,7 +8,7 @@
 
     </thead>
     <tr ng-repeat="u in adoptions">
-        <td><img src="http://homeformeapi.localhost/{{u.profileimage}}" class="img-circle" width="70" height="70" id="pi"></td>
+        <td><img src="http://pomserver.westus.cloudapp.azure.com/{{u.profileimage}}" class="img-circle" width="70" height="70" id="pi"></td>
         <td>{{u.name}}</td>
         <td>{{u.arrivalDate  | date: "dd/MM/yyyy 'a las' h:mma "}}</td>
 

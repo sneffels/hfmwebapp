@@ -4,46 +4,46 @@
 
 angular.module('animalCRUD.services', [])
     .factory('Animal', function($resource) {
-    return $resource('http://homeformeapi.localhost/animals/:id', { id: '@id' }, {
+    return $resource('http://pomserver.westus.cloudapp.azure.com/animals/:id', { id: '@id' }, {
         update: {
             method: 'PUT'
         }
     });
 }).factory('Species', function($resource) {
-    return $resource('http://homeformeapi.localhost/species/:id', { id: '@id' }, {
+    return $resource('http://pomserver.westus.cloudapp.azure.com/species/:id', { id: '@id' }, {
         update: {
             method: 'PUT'
         }
     });
 }).factory('Breed', function($resource) {
-    return $resource('http://homeformeapi.localhost/breeds/:id', { id: '@id' }, {
+    return $resource('http://pomserver.westus.cloudapp.azure.com/breeds/:id', { id: '@id' }, {
         update: {
             method: 'PUT'
         }
     });
 }).factory('Uncatalogued',function($resource)
 {
-    return $resource('http://homeformeapi.localhost/uncatalogued/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/uncatalogued/:id', { id: '@id' });
 
 }).factory('Lost',function($resource)
 {
-    return $resource('http://homeformeapi.localhost/lostanimal/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/lostanimal/:id', { id: '@id' });
 
 }).factory('Adopted',function($resource)
 {
-    return $resource('http://homeformeapi.localhost/adopted/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/adopted/:id', { id: '@id' });
 
 }).factory('Adoptions',function($resource)
 {
-    return $resource('http://homeformeapi.localhost/adoptions/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/adoptions/:id', { id: '@id' });
 
 }).factory('Valoration',function($resource)
 {
-    return $resource('http://homeformeapi.localhost/valoration/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/valoration/:id', { id: '@id' });
 
 }).factory('StatusAnimal',function($resource)
 {
-    return $resource('http://homeformeapi.localhost/animalstatus/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/animalstatus/:id', { id: '@id' });
 }).factory('newRegisterServices',function()
 {
     var _species_id=0;
@@ -117,14 +117,14 @@ angular.module('animalCRUD.services', [])
     };
 
 }).factory('Vet',function($resource){
-    return $resource('http://homeformeapi.localhost/vets/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/vets/:id', { id: '@id' });
 }).factory('Volunteer',function($resource){
-    return $resource('http://homeformeapi.localhost/volunteers/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/volunteers/:id', { id: '@id' });
 }).factory('MedicalValoration',function($resource){
-    return $resource('http://homeformeapi.localhost/medicalobs/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/medicalobs/:id', { id: '@id' });
 }).factory('BehaviorObservation',function($resource){
-    return $resource('http://homeformeapi.localhost/behaviorobs/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/behaviorobs/:id', { id: '@id' });
 }).factory('Adoption',function($resource){
-    return $resource('http://homeformeapi.localhost/adoption/:id', { id: '@id' });
+    return $resource('http://pomserver.westus.cloudapp.azure.com/adoption/:id', { id: '@id' });
 });
 
